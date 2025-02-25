@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 254, 249, 227;
+  --background-end-rgb: 254, 249, 227;
+  --primary-color: #E6AA63;
+  --chat-bubble-color: #F7DAA0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+  overflow-x: hidden;
+}
+
+/* 增強移動設備上的觸摸體驗 */
+@media (max-width: 768px) {
+  button, 
+  [role="button"],
+  input,
+  a {
+    @apply touch-manipulation;
+  }
+
+  /* 防止iOS Safari上的雙擊縮放 */
+  input, button {
+    touch-action: manipulation;
+  }
+}
+
+/* 防止長按顯示上下文菜單 */
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* 允許輸入框中的文本選擇 */
+input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* 自定義滾動條 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+/* 聊天氣泡動畫 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-bubble-animation {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* 麥克風脈動動畫 */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.mic-pulse {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* 錄音中的脈動紅點 */
+@keyframes recordingPulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.recording-pulse {
+  animation: recordingPulse 1.2s infinite;
+}
